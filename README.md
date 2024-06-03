@@ -1,4 +1,4 @@
-# Website-Farmamin
+# Website-Perwira-Sekti
 Website-Farmamin - Sistem Informasi Perizinan Pangan Dinas Kesehatan Kota Semarang
 
 # Deskripsi Singkat:
