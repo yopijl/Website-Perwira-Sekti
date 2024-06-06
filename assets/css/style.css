@@ -1,16 +1,52 @@
-.video-container { 
-    position: relative; 
-    padding-bottom: 56.25%; 
-    padding-top: 30px; 
-    height: 0; 
-    overflow: hidden; } 
-.video-container iframe, 
-.video-container object, 
-.video-container embed { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; }
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 90%;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  margin: -280px auto 0 auto;
+}
 
-    
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* Tableau */
+.tableauContainer {
+  width: 100%;
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.tableauPlaceholder {
+  width: 2000px; /* Set a wider width to enable horizontal scrolling */
+  height: 100%;
+  position: relative;
+}
+
+.tableauPlaceholder object {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Cek PIRT */
+.iframe-container {
+  position: relative;
+  width: 100%;
+  height: 1200px;
+  background: url(assets/images/dkk8.jpg);
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 100%;
+}
