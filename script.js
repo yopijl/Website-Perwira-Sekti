@@ -1,72 +1,134 @@
+let currentPage = 1;
+const rowsPerPage = 25;
+let data = [];
+let totalPageCount = 0;
+
 async function fetchData() {
     try {
-        const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=QF2TQzzWN1vxXPGVY6UCbib8s6Jlly5eTyhnXOt4X5jyOUmLM9xppr2UP9WKhry7h0Nrz3F1TFQtC6Af7yMDNm4MZk1DS6qsm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnO_SecaivPBekCHQCuLnl9MnZE_BEL0vgzu6VMj-LpgXpbDBs3f-UK0aNN6FBpC-8lC8lVjenL1GNIJYBNc0j4ghh8oSjm9bC9z9Jw9Md8uu&lib=MHJGUzrccgGL0JFfx8Nqd9VUvbkCy_f6O');
+        const response = await fetch('https://script.google.com/macros/s/AKfycbz14NyIwqp-zFhJSLII9YhxDG0qbqaWAXtIgF6GRM16OTjeXuQnjd8vc6yQrwja37mZbw/exec');
         const data = await response.json();
-        return data;
+        return data.records;
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
 
 // Ambil tag id container
-const containerDisplay = document.getElementById('container')
+const containerDisplay = document.getElementById('table-container');
+const paginationDisplay = document.getElementById('pagination-container');
 
-// Komponen Card untuk render semua data
-const cardComponent = (title, body) => {
-    // Buat Card
-    const data = `
-        <div class="border rounded-md p-4 flex justify-between items-start gap-x-3">
-            <div>
-               <h1 class="font-bold mb-3">${title}</h1>
-               <span class="text-sm text-gray-500">${body}</span>
-            </div>
-            <div>
-               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-               </svg>
-            </div>
-         </div>
-    `
+const tableComponent = (data, page = 1, rowsPerPage = 25) => {
+    page--;
+    const start = page * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedData = data.slice(start, end);
 
-    // Tambahkan kedalam elemen container yang sudah kita definisikan sebelumnya
-    containerDisplay.insertAdjacentHTML('afterbegin', data)
+    let table = `
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>NO. PIRT</th>
+                    <th>NAMA BRANDING PRODUK</th>
+                    <th>JENIS PANGAN</th>
+                    <th>KEMASAN</th>
+                    <th>TANGGAL PENGAJUAN</th>
+                    <th>TELP</th>
+                    <th>PEMILIK</th>
+                    <th>ALAMAT</th>
+                    <th>STATUS PIRT</th>
+                    <th>BERLAKU HINGGA</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    paginatedData.forEach(item => {
+        table += `
+            <tr>
+                <td>${item['NO._PIRT'] ? item['NO._PIRT'] : 'N/A'}</td>
+                <td>${item.NAMA_BRANDING_PRODUK ? item.NAMA_BRANDING_PRODUK : 'N/A'}</td>
+                <td>${item.JENIS_PANGAN ? item.JENIS_PANGAN : 'N/A'}</td>
+                <td>${item.KEMASAN ? item.KEMASAN : 'N/A'}</td>
+                <td>${item.TANGGAL_PENGAJUAN ? new Date(item.TANGGAL_PENGAJUAN).toLocaleDateString() : 'N/A'}</td>
+                <td>${item.TELP ? item.TELP : 'N/A'}</td>
+                <td>${item.PEMILIK ? item.PEMILIK : 'N/A'}</td>
+                <td>${item.ALAMAT ? item.ALAMAT : 'N/A'}</td>
+                <td>${item.STATUS_PIRT ? item.STATUS_PIRT : 'N/A'}</td>
+                <td>${item.BERLAKU_HINGGA ? new Date(item.BERLAKU_HINGGA).toLocaleDateString() : 'N/A'}</td>
+            </tr>
+        `;
+    });
+
+    table += `
+            </tbody>
+        </table>
+    `;
+
+    containerDisplay.innerHTML = table;
+    setupPagination(data, paginationDisplay, rowsPerPage);
 }
 
-// Komponen Alert jika terdapat error
+const setupPagination = (data, wrapper, rowsPerPage) => {
+    wrapper.innerHTML = '';
+
+    const pageCount = Math.ceil(data.length / rowsPerPage);
+    totalPageCount = pageCount;
+    let startPage = Math.floor((currentPage - 1) / 5) * 5 + 1;
+    let endPage = Math.min(startPage + 4, pageCount);
+
+    for (let i = startPage; i <= endPage; i++) {
+        let btn = paginationButton(i, data);
+        wrapper.appendChild(btn);
+    }
+
+    if (endPage < pageCount) {
+        let nextBtn = document.createElement('button');
+        nextBtn.innerText = '>>';
+        nextBtn.addEventListener('click', () => {
+            currentPage = endPage + 1;
+            tableComponent(data, currentPage, rowsPerPage);
+        });
+        wrapper.appendChild(nextBtn);
+    }
+}
+
+const paginationButton = (page, data) => {
+    const button = document.createElement('button');
+    button.innerText = page;
+
+    if (currentPage === page) button.classList.add('active');
+
+    button.addEventListener('click', () => {
+        currentPage = page;
+        tableComponent(data, currentPage, rowsPerPage);
+
+        let currentBtn = document.querySelector('.pagination button.active');
+        if (currentBtn) currentBtn.classList.remove('active');
+
+        button.classList.add('active');
+    });
+
+    return button;
+}
+
 const alertComponent = (message) => {
     const data = `
-    <table>
-    <tr>
-      <th>Company</th>
-      <th>Contact</th>
-      <th>Country</th>
-    </tr>
-    <tr>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
-    </tr>
-    <tr>
-      <td>Centro comercial Moctezuma</td>
-      <td>Francisco Chang</td>
-      <td>Mexico</td>
-    </tr>
-  </table>
- `
-    containerDisplay.insertAdjacentHTML('afterbegin', data)
+        <div class="alert alert-danger" role="alert">
+            ${message}
+        </div>
+    `;
+
+    containerDisplay.innerHTML = data;
 }
 
-function render() {
-    fetchData()
-        .then((response) => {
-            alertComponent()
-            // response.forEach(result => {
-            //     cardComponent(result.title, result.body);
-            // });
-        })
-        .catch((error) => {
-            // alertComponent(error.message)
-        });
+async function render() {
+    data = await fetchData();
+
+    if (data && data.length > 0) {
+        tableComponent(data, currentPage, rowsPerPage);
+    } else {
+        alertComponent('Tidak ada data ditemukan');
+    }
 }
 
 render();
