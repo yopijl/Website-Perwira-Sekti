@@ -124,3 +124,21 @@
 
 
 })(window.jQuery);
+
+
+// Show the popup card after 2 seconds
+setTimeout(function() {
+    document.getElementById('popup-card').classList.add('active');
+}, 2000);
+
+// Close the popup card
+document.getElementById('popup-close').onclick = function() {
+    document.getElementById('popup-card').classList.remove('active');
+};
+
+// Close the popup card when clicking outside the popup content
+window.onclick = function(event) {
+    if (event.target == document.getElementById('popup-card')) {
+        document.getElementById('popup-card').classList.remove('active');
+    }
+};
