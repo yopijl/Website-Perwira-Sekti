@@ -10,8 +10,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel=”icon” href="assets/images/pemkot.png" type="image/icon">
     <title>SISTEM INFORMASI PERIZINAN PANGAN DINAS KESEHATAN KOTA SEMARANG</title>
+    <link rel="icon" href="assets/images/pemkot.png" type="image/icon" sizes="9x12">
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -26,7 +26,6 @@
       rel="stylesheet"
       href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
     />
-    <!---->
   </head>
 
   <body>
@@ -76,7 +75,6 @@
         </div>
       </div>
     </div>
-     
 
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
@@ -278,7 +276,7 @@
     <div class="contact-content">
       <div class="container">
         <div class="row">
-          <div class="col-lg-7">
+          <div class="col-lg-6">
             <div id="map">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.1899984875254!2d110.41225907499721!3d-6.986886993014072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708b5ab6b34b67%3A0x4eba79d618667033!2sDinas%20Kesehatan%20Kota%20Semarang!5e0!3m2!1sid!2sid!4v1707125665315!5m2!1sid!2sid"
@@ -301,7 +299,9 @@
               alt=""
               style="max-width: 52px"
             />
-            <h6><a href="https://api.whatsapp.com/send?phone=6289504939368">089504939368<br /><span>Konsultasi & Pengaduan</span></h6></a>
+            <h6>
+              <a href="https://api.whatsapp.com/send?phone=6289504939368">089504939368<br /><span>Konsultasi & Pengaduan</span></h6
+            ></a>
           </div>
         </div>
         <div class="col-lg-6">
@@ -309,11 +309,43 @@
             <img
               src="assets/images/email-icon.png"
               alt=""
-              style="max-width: 52px"/>
-            <h6><a href="mailto:farmamin.kotasmg@gmail.com">farmamin.kotasmg@gmail.com<br /><span>Email</span></h6></a>
+              style="max-width: 52px"
+            />
+            <h6>
+              <a href="mailto:farmamin.kotasmg@gmail.com">farmamin.kotasmg@gmail.com<br /><span>Email</span></h6
+            ></a>
           </div>
         </div>
       </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="item visitor text-center">
+            <h6>
+              <div class="visitor-title">Statistik Kunjungan Website</div>
+              <script type="text/javascript" src="https://freehitcounters.org/count/ftt2"></script>
+              <br />
+              <a href="https://www.wgglobal.de/Gebrauchtgeräte_Videoüberwachung.html">Videoüberwachung gebraucht</a>
+              <script type="text/javascript" src="https://www.whomania.com/ctr?id=bd25e40b85730ca9da570af904181cdd6addde51"></script>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Survey Button -->
+    <div class="survey-button-container">
+      <a href="Survei.html" class="survey-button">
+        <img src="assets/images/survey.png" alt="Survey" />
+      </a>
+      <div class="survey-text">Isi Survei</div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <div class="whatsapp-button-container">
+      <a href="https://api.whatsapp.com/send?phone=6289504939368" class="whatsapp-button">
+        <img src="assets/images/whatsapp.png" alt="WhatsApp" />
+      </a>
+      <div class="whatsapp-text">Konsultasi</div>
     </div>
 
     <footer>
@@ -325,6 +357,16 @@
         </div>
       </div>
     </footer>
+
+    <!-- Pop-up Card -->
+    <div class="popup-card" id="popup-card">
+      <div class="popup-content">
+        <span class="popup-close" id="popup-close">&times;</span>
+        <h4>Pendaftaran <br> Penyuluhan Keamanan Pangan</h4>
+        <p>Lakukan pendaftaran 1 (satu) kali saja. Jika sudah mendaftar, anda bisa melewati tahap ini.</p>
+        <a href="pendaftaran_pkp.html" class="btn btn-primary">Daftar</a>
+      </div>
+    </div>
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
