@@ -12,103 +12,8 @@
   <link rel="stylesheet" href="assets/css/owl.css" />
   <link rel="stylesheet" href="assets/css/animate.css" />
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-  <style>
-    .table-container {
-      width: 100%;
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 0px;
-      margin-top: 2%;
-      margin-bottom: 5%;
-      overflow-x: auto;
-    }
-    .pagination {
-      display: flex;
-      justify-content: center;
-      margin: 0;
-    }
-    .pagination button {
-      margin: 0 5px;
-      padding: 10px 20px;
-      border: none;
-      background-color: #f0f0f0;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .pagination button.active {
-      background-color: #007bff;
-      color: #fff;
-    }
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .card {
-      width: calc(33.33% - 20px); /* 3 cards per row */
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      padding: 15px;
-      text-align: center;
-      background-color: #fff;
-      box-sizing: border-box;
-    }
-    @media (max-width: 768px) {
-      .card {
-        width: calc(50% - 20px); /* 2 cards per row */
-      }
-    }
-    @media (max-width: 480px) {
-      .card {
-        width: 100%; /* 1 card per row */
-      }
-    }
-    .card h4 {
-      margin: 10px 0;
-      cursor: pointer;
-    }
-    #search-bar {
-      width: calc(100% - 200px);
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-    #search-container {
-      display: flex;
-      margin-bottom: 20px;
-      padding: 10px 0;
-      background-color: white;
-      max-width: 1000px;
-      margin: 0 auto; /* Center the container */
-    }
-    #search-type {
-      width: 150px;
-      margin-right: 10px;
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-    #search-button {
-      padding: 10px 20px;
-      border: none;
-      background-color: #007bff;
-      color: #fff;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .header-area {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background-color: white;
-    }
-    .section-heading-container {
-      position: sticky;
-      top: 100px; /* Adjust this value to your needs */
-      z-index: 999;
-      background-color: white;
-      padding: 10px 0;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css" />
+
 </head>
 <body>
   <div class="sub-header">
@@ -225,6 +130,22 @@
     </div>
   </div>
 
+    <!-- Survey Button -->
+    <div class="survey-button-container">
+      <a href="Survei.html" class="survey-button">
+        <img src="assets/images/survey.png" alt="Survey" />
+      </a>
+      <div class="survey-text">Isi Survei</div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <div class="whatsapp-button-container">
+      <a href="https://api.whatsapp.com/send?phone=6289504939368" class="whatsapp-button">
+        <img src="assets/images/whatsapp.png" alt="WhatsApp" />
+      </a>
+      <div class="whatsapp-text">Konsultasi</div>
+    </div>
+
   <footer>
     <div class="container">
       <div class="row">
@@ -241,7 +162,7 @@
   <script src="assets/js/owl-carousel.js"></script>
   <script src="assets/js/counter.js"></script>
   <script src="assets/js/custom.js"></script>
-  <script src="script.js"></script>
+  <script src="assets/js/script.js"></script>
 
 </body>
 </html>
